@@ -58,7 +58,7 @@ export function RequirementForm() {
         // TODO: Submit to your API here
         console.log(values)
         const formattedMessage = formatWhatsAppMessage(values)
-        const whatsappUrl = `https://wa.me/8866187337?text=${formattedMessage}`
+        const whatsappUrl = `https://wa.me/7405248966?text=${formattedMessage}`
 
         // Open WhatsApp in a new tab
         window.open(whatsappUrl, '_blank')
