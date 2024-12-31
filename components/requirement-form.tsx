@@ -17,6 +17,7 @@ import Image from "next/image"
 import { boxPatterns, BoxPatternType } from "@/types/box-patterns"
 import { formatWhatsAppMessage } from "@/utils/format-whatsapp-message"
 import { useRouter } from "next/navigation"
+import "./custom-radio.css"
 
 const formSchema = z.object({
     requirementType: z.enum(["Sample", "Die", "DieLine"]),
@@ -53,6 +54,8 @@ export function RequirementForm() {
             notes: "",
         },
     })
+
+    const { watch } = form;
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // TODO: Submit to your API here
@@ -223,27 +226,31 @@ export function RequirementForm() {
                                     control={form.control}
                                     name="sizeUnit"
                                     render={({ field }) => (
-                                        <FormItem className="space-y-3">
+                                        <FormItem className="space-y-3 space-x-3">
                                             <FormLabel>Size Unit</FormLabel>
                                             <FormControl>
-                                                <RadioGroup
-                                                    onValueChange={field.onChange}
-                                                    defaultValue={field.value}
-                                                    className="flex flex-row space-x-4"
-                                                >
-                                                    <FormItem className="flex items-center space-x-2">
-                                                        <FormControl>
-                                                            <RadioGroupItem value="inch" />
-                                                        </FormControl>
-                                                        <FormLabel className="font-normal">Inch</FormLabel>
-                                                    </FormItem>
-                                                    <FormItem className="flex items-center space-x-2">
-                                                        <FormControl>
-                                                            <RadioGroupItem value="mm" />
-                                                        </FormControl>
-                                                        <FormLabel className="font-normal">mm</FormLabel>
-                                                    </FormItem>
-                                                </RadioGroup>
+                                                <div className="custom-radio-group">
+                                                    <div className="custom-radio-item">
+                                                        <input
+                                                            type="radio"
+                                                            id="inch"
+                                                            value="inch"
+                                                            checked={field.value === "inch"}
+                                                            onChange={field.onChange}
+                                                        />
+                                                        <label htmlFor="inch">Inch</label>
+                                                    </div>
+                                                    <div className="custom-radio-item">
+                                                        <input
+                                                            type="radio"
+                                                            id="mm"
+                                                            value="mm"
+                                                            checked={field.value === "mm"}
+                                                            onChange={field.onChange}
+                                                        />
+                                                        <label htmlFor="mm">mm</label>
+                                                    </div>
+                                                </div>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -328,7 +335,7 @@ export function RequirementForm() {
                                     name="quantity"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Quantity</FormLabel>
+                                            <FormLabel>Quantity (ups)</FormLabel>
                                             <FormControl>
                                                 <Input type="number" {...field} />
                                             </FormControl>
@@ -354,7 +361,10 @@ export function RequirementForm() {
                                 <Alert className="bg-primary/10 border-primary/20">
                                     <Clock className="h-4 w-4" />
                                     <AlertDescription>
-                                        Your order will be processed within 24-48 hours
+                                        {form.watch("requirementType") === "Sample"
+                                            ? "Your order will be processed within 3-6 hours"
+                                            : "Your order will be processed within 24-48 hours"
+                                        }
                                     </AlertDescription>
                                 </Alert>
 
@@ -366,8 +376,15 @@ export function RequirementForm() {
                                 </Alert>
 
                                 <div className="flex justify-end space-x-4">
-                                    <Button variant="outline" type="button">
-                                        Cancel
+                                    <Button
+                                        variant="outline"
+                                        type="button"
+                                        onClick={() => {
+                                            form.reset()
+                                            setShowFields({ material: false, boxPattern: false, size: false })
+                                        }}
+                                    >
+                                        Reset
                                     </Button>
                                     <Button type="submit">
                                         <Send className="w-4 h-4 mr-2" />

@@ -1,0 +1,38 @@
+.custom-radio-group {
+    display: inline-flex;
+    background: white;
+    border: 1px solid hsl(var(--border));
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .custom-radio-item {
+    position: relative;
+    min-width: 80px;
+  }
+  
+  .custom-radio-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .custom-radio-item label {
+    display: block;
+    padding: 8px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .custom-radio-item input[type="radio"]:checked + label {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  
+  .dark .custom-radio-group {
+    background: hsl(var(--secondary));
+  }
+  
+  
