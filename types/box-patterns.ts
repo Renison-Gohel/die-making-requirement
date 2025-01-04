@@ -6,9 +6,9 @@ export type BoxPatternType = {
   
   export const boxPatterns: BoxPatternType[] = [
     {
-      id: "reverstuck",
-      name: "Reverse Tuck",
-      imageUrl: "/box-patterns/Reverse-Tuck.png" // You can replace with your image URLs
+      id: "half-cartoon",
+      name: "Half Cartoon",
+      imageUrl: "/box-patterns/half-cartoon.png" // You can replace with your image URLs
     },
     {
       id: "interlock",
@@ -18,7 +18,7 @@ export type BoxPatternType = {
     {
       id: "ring-flap",
       name: "Ring Flap",
-      imageUrl: "/box-patterns/ring-flap.jpg"
+      imageUrl: "/box-patterns/ring-flap.png"
     },
     {
       id: "cartoon",
@@ -27,7 +27,7 @@ export type BoxPatternType = {
     },
     {
       id: "hardware-folding",
-      name: "Hardware Folding",
+      name: "Hardware Folding Box",
       imageUrl: "/box-patterns/hardware-folding.png"
     },
     {
@@ -36,24 +36,34 @@ export type BoxPatternType = {
       imageUrl: "/box-patterns/mobile-folding.png"
     },
     {
-      id: "inner-tre",
-      name: "Inner Tray",
-      imageUrl: "/box-patterns/inner-tray.png"
+      id: "pin-top-bottom",
+      name: "Pin Top Bottom",
+      imageUrl: "/box-patterns/pin-top-bottom.png"
     },
     {
-      id: "outer-sleeve",
-      name: "Outer Sleeve",
-      imageUrl: "/box-patterns/outer-sleeve.jpg"
+      id: "revustk-sadu-box",
+      name: "Sadu Box OR Revustk",
+      imageUrl: "/box-patterns/revustk-sadu-box.png"
     },
     {
-      id: "top-bottom-pin",
-      name: "Top Bottom Pin",
-      imageUrl: "/box-patterns/top-bottom-pin.jpg"
+      id: "cake-box",
+      name: "Cake Box",
+      imageUrl: "/box-patterns/cake-box.png"
     },
     {
-      id: "top-bottom-folding",
-      name: "Top Bottom Folding",
-      imageUrl: "/box-patterns/top-bottom-folding.jpg"
+      id: "sweet-box",
+      name: "Sweet Box",
+      imageUrl: "/box-patterns/sweet-box.png"
+    },
+    {
+      id: "folding-top-bottom",
+      name: "Top Bottom Folding Box",
+      imageUrl: "/box-patterns/top-bottom-folding.png"
+    },
+    {
+      id: "popatlok-interface",
+      name: "Popatlok Box",
+      imageUrl: "/box-patterns/popatlok-interface.png"
     }
   ]
   

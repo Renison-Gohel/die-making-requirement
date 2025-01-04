@@ -175,6 +175,49 @@ export function RequirementForm() {
                         )}
 
                         {showFields.boxPattern && (
+                            // <FormField
+                            //     control={form.control}
+                            //     name="boxPattern"
+                            //     render={({ field }) => (
+                            //         <FormItem>
+                            //             <FormLabel>Box Pattern</FormLabel>
+                            //             <Select
+                            //                 onValueChange={(value) => {
+                            //                     field.onChange(value)
+                            //                     setShowFields((prev) => ({ ...prev, size: true }))
+                            //                 }}
+                            //             >
+                            //                 <FormControl>
+                            //                     <SelectTrigger>
+                            //                         <SelectValue placeholder="Select box pattern" />
+                            //                     </SelectTrigger>
+                            //                 </FormControl>
+                            //                 <SelectContent>
+                            //                     {boxPatterns.map((pattern: BoxPatternType) => (
+                            //                         <SelectItem key={pattern.id} value={pattern.id}>
+                            //                             <div className="flex items-center gap-2">
+                            //                                 <Image
+                            //                                     src={pattern.imageUrl}
+                            //                                     alt={pattern.name}
+                            //                                     width={40}
+                            //                                     height={40}
+                            //                                     className="rounded object-cover"
+                            //                                     // Fallback to placeholder if image fails to load
+                            //                                     onError={(e) => {
+                            //                                         const target = e.target as HTMLImageElement
+                            //                                         target.src = `/placeholder.svg?height=40&width=40&text=${pattern.name}`
+                            //                                     }}
+                            //                                 />
+                            //                                 {pattern.name}
+                            //                             </div>
+                            //                         </SelectItem>
+                            //                     ))}
+                            //                 </SelectContent>
+                            //             </Select>
+                            //             <FormMessage />
+                            //         </FormItem>
+                            //     )}
+                            // />
                             <FormField
                                 control={form.control}
                                 name="boxPattern"
@@ -189,29 +232,48 @@ export function RequirementForm() {
                                         >
                                             <FormControl>
                                                 <SelectTrigger>
-                                                    <SelectValue placeholder="Select box pattern" />
+                                                    <SelectValue>
+                                                        {field.value ? (
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="relative w-16 h-16">
+                                                                    <Image
+                                                                        src={boxPatterns.find(p => p.id === field.value)?.imageUrl || ''}
+                                                                        alt={boxPatterns.find(p => p.id === field.value)?.name || ''}
+                                                                        fill
+                                                                        className="rounded object-contain"
+                                                                        onError={(e) => {
+                                                                            const target = e.target as HTMLImageElement
+                                                                            target.src = `/placeholder.svg?height=64&width=64&text=${field.value}`
+                                                                        }}
+                                                                    />
+                                                                </div>
+                                                                <span>{boxPatterns.find(p => p.id === field.value)?.name}</span>
+                                                            </div>
+                                                        ) : (
+                                                            "Select box pattern"
+                                                        )}
+                                                    </SelectValue>
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                {boxPatterns.map((pattern: BoxPatternType) => (
-                                                    <SelectItem key={pattern.id} value={pattern.id}>
-                                                        <div className="flex items-center gap-2">
+                                                <div className="grid grid-cols-2 gap-2 p-2">
+                                                    {boxPatterns.map((pattern: BoxPatternType) => (
+                                                        <SelectItem key={pattern.id} value={pattern.id} className="flex flex-col items-center p-2">
                                                             <Image
                                                                 src={pattern.imageUrl}
                                                                 alt={pattern.name}
-                                                                width={40}
-                                                                height={40}
-                                                                className="rounded object-cover"
-                                                                // Fallback to placeholder if image fails to load
+                                                                width={100}
+                                                                height={100}
+                                                                className="rounded object-cover mb-2"
                                                                 onError={(e) => {
                                                                     const target = e.target as HTMLImageElement
-                                                                    target.src = `/placeholder.svg?height=40&width=40&text=${pattern.name}`
+                                                                    target.src = `/placeholder.svg?height=100&width=100&text=${pattern.name}`
                                                                 }}
                                                             />
-                                                            {pattern.name}
-                                                        </div>
-                                                    </SelectItem>
-                                                ))}
+                                                            <span className="text-center">{pattern.name}</span>
+                                                        </SelectItem>
+                                                    ))}
+                                                </div>
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />

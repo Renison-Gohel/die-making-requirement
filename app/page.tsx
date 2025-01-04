@@ -1,23 +1,45 @@
-"use client"
+'use client'
 
-import { useEffect } from "react"
-import { RequirementForm } from "@/components/requirement-form"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { registerServiceWorker } from "./pwa"
-import { InstallPrompt } from "@/components/install-prompt"
+import { useState, useEffect } from 'react'
+import Hero from '@/components/hero'
+import Products from '@/components/products'
+import Features from '@/components/features'
+import Process from '@/components/process'
+import Testimonials from '@/components/testimonials'
+import CTA from '@/components/cta'
+import Loading from '@/components/loading'
+import { Metadata } from 'next'
+
+const metadata: Metadata = {
+  title: 'Premium Box Manufacturing | Custom Packaging Solutions',
+  description: 'Expert manufacturers of premium quality boxes and packaging solutions. Specializing in custom designs, various patterns, and sustainable materials.',
+}
 
 export default function Home() {
+
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
-    registerServiceWorker()
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2500) // Adjust this time as needed
+
+    return () => clearTimeout(timer)
   }, [])
 
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-2xl mx-auto mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <InstallPrompt />
-        <ThemeToggle />
-      </div>
-      <RequirementForm />
-    </div>
+    <main>
+      <Hero />
+      <Features />
+      <Products />
+      <Process />
+      <Testimonials />
+      <CTA />
+    </main>
   )
 }
+
