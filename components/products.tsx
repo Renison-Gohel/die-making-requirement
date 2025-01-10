@@ -58,7 +58,7 @@ const products = [
     id: 9,
     name: 'Folding Top Bottom Box',
     description: 'Versatile design for various products',
-    image: '/box-patterns/top-bottom-folding.jpg'
+    image: '/box-patterns/folding-top-bottom.png'
   },
 ]
 
