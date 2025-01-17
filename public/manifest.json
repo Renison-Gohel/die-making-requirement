@@ -2,7 +2,7 @@
   "name": "Die Making Order Form",
   "short_name": "Die Order",
   "description": "Place your die making orders easily",
-  "start_url": "/",
+  "start_url": "/requirement-form",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1976d2",
@@ -33,10 +33,10 @@
   "categories": ["productivity", "utilities"],
   "shortcuts": [
     {
-      "name": "New Order",
-      "short_name": "New",
-      "description": "Start a new die making order",
-      "url": "/new-order",
+      "name": "Die Services",
+      "short_name": "Home",
+      "description": "Explore what we offer",
+      "url": "/",
       "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
     }
   ]
